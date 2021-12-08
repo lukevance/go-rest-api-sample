@@ -1,4 +1,4 @@
-module lukevance/rest-api
+module lukevance/go-rest-api
 
 go 1.17
 

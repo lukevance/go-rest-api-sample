@@ -14,16 +14,24 @@ type pizza struct {
 
 func main() {
 	router := gin.Default()
+	router.GET("/", getRoot)
 	router.GET("/pizzas", getPizzas)
 	router.POST("/pizzas", postPizzas)
 
-	router.Run("localhost:8080")
+	router.Run(":8080")
 }
 
 // seed data for pizzas
 var pizzas = []pizza{
 	{ID: "1", Name: "Cheese", Price: 9.99},
 	{ID: "2", Name: "Pepperoni", Price: 11.99},
+}
+
+// basic greeting at root
+func getRoot(c *gin.Context) {
+	m := make(map[string]string)
+	m["message"] = "Hello Pizza!"
+	c.IndentedJSON(http.StatusOK, m)
 }
 
 // getPizzas responds with the list of all pizzas
